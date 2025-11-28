@@ -3,7 +3,7 @@
     <TargetFramework>net9.0</TargetFramework> <Authors>Toi</Authors>
     <Company>Toi</Company>
     <Description>Notifie les nouveaux épisodes.</Description>
-    <Version>1.0.0.0</Version>
+    <Version>1.0.2.0</Version>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
   </PropertyGroup>
 
@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jellyfin.Controller" Version="10.9.0" />
-    <PackageReference Include="Jellyfin.Model" Version="10.9.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" /> <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
+    <PackageReference Include="Jellyfin.Controller" Version="10.11.0" />
+    <PackageReference Include="Jellyfin.Model" Version="10.11.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" /> <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.10" />
   </ItemGroup>
 </Project>
