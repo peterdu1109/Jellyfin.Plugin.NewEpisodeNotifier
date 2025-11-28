@@ -1,10 +1,12 @@
-{
-    "guid": "a2d3e4f5-6789-4b12-8c34-5d6e7f8a9b0c",
-    "name": "New Episode Notifier",
-    "description": "Affiche une cloche quand un épisode est ajouté.",
-    "overview": "Ce plugin notifie les utilisateurs lorsqu'un nouvel épisode est ajouté à la bibliothèque via une icône de cloche dans l'interface.",
-    "owner": "peterdu1109",
-    "category": "General",
-    "imageUrl": "",
-    "versions": []
-}
+[
+    {
+        "guid": "a2d3e4f5-6789-4b12-8c34-5d6e7f8a9b0c",
+        "name": "New Episode Notifier",
+        "description": "Affiche une cloche quand un épisode est ajouté.",
+        "overview": "Ce plugin notifie les utilisateurs lorsqu'un nouvel épisode est ajouté à la bibliothèque via une icône de cloche dans l'interface.",
+        "owner": "peterdu1109",
+        "category": "General",
+        "imageUrl": "",
+        "versions": []
+    }
+]

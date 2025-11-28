@@ -54,9 +54,9 @@ jobs:
           EOF
           
           # Add new version to manifest.json using jq
-          # Note: This script assumes manifest.json exists and has a "versions" array.
-          # It prepends the new version to the list.
-          jq --argjson new_ver "$(cat new_version.json)" '.versions = [$new_ver] + .versions' manifest.json > manifest.tmp && mv manifest.tmp manifest.json
+          # Note: This script assumes manifest.json is an ARRAY of packages.
+          # We update the 'versions' array of the first package (index 0).
+          jq --argjson new_ver "$(cat new_version.json)" '.[0].versions = [$new_ver] + .[0].versions' manifest.json > manifest.tmp && mv manifest.tmp manifest.json
           
           # Clean up
           rm new_version.json
