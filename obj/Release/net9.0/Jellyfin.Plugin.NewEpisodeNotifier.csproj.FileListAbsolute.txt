@@ -1,0 +1,12 @@
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\obj\Release\net9.0\Jellyfin.Plugin.NewEpisodeNotifier.csproj.AssemblyReference.cache
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\obj\Release\net9.0\Jellyfin.Plugin.NewEpisodeNotifier.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\obj\Release\net9.0\Jellyfin.Plugin.NewEpisodeNotifier.AssemblyInfoInputs.cache
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\obj\Release\net9.0\Jellyfin.Plugin.NewEpisodeNotifier.AssemblyInfo.cs
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\obj\Release\net9.0\Jellyfin.Plugin.NewEpisodeNotifier.csproj.CoreCompileInputs.cache
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\Jellyfin.Plugin.NewEpisodeNotifier.deps.json
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\Jellyfin.Plugin.NewEpisodeNotifier.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\Jellyfin.Plugin.NewEpisodeNotifier.pdb
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\obj\Release\net9.0\Jellyfin.Plugin.NewEpisodeNotifier.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\obj\Release\net9.0\refint\Jellyfin.Plugin.NewEpisodeNotifier.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\obj\Release\net9.0\Jellyfin.Plugin.NewEpisodeNotifier.pdb
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\obj\Release\net9.0\ref\Jellyfin.Plugin.NewEpisodeNotifier.dll

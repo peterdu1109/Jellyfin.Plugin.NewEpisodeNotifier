@@ -1,0 +1,13 @@
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\Jellyfin.Plugin.NewEpisodeNotifier.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\Jellyfin.Plugin.NewEpisodeNotifier.deps.json
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\Jellyfin.Plugin.NewEpisodeNotifier.pdb
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\Diacritics.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\ICU4N.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\ICU4N.Transliterator.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\J2N.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\MediaBrowser.Common.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\MediaBrowser.Controller.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\Jellyfin.Data.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\Jellyfin.Extensions.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\MediaBrowser.Model.dll
+C:\Users\kogon\OneDrive\Bureau\Jellyfin.Plugin.NewEpisodeNotifier\bin\Release\net9.0\publish\Emby.Naming.dll
