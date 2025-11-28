@@ -13,7 +13,7 @@
                 "changelog": "Version initiale avec persistance des notifications et support de l'icône de cloche.",
                 "targetAbi": "10.9.0.0",
                 "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Plugin.NewEpisodeNotifier/releases/download/Realse1.0.1/Jellyfin.Plugin.NewEpisodeNotifier.zip",
-                "checksum": "f9ca8c3170f84a1c1ce4f03311c681a9",
+                "checksum": "ef64022ed651e62405931b0b8edc9d7a",
                 "timestamp": "2025-11-28T15:00:00Z"
             }
         ]
