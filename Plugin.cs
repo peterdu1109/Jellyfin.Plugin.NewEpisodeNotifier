@@ -30,8 +30,6 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
             }
         }
 
-        private string DataFilePath => System.IO.Path.Combine(DataFolderPath, "new_episodes.json");
-
         // --- CONSTRUCTEUR CORRIGÉ POUR COMPILER ---
         // On demande juste ce dont on a besoin, et on laisse base() vide.
         public Plugin(ILibraryManager libraryManager, ILogger<Plugin> logger) 
@@ -88,8 +86,15 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
         {
             try
             {
+                if (string.IsNullOrEmpty(DataFolderPath))
+                {
+                    _logger.LogWarning("[NewEpisodeNotifier] DataFolderPath is null, cannot save data.");
+                    return;
+                }
+                
+                var dataFilePath = System.IO.Path.Combine(DataFolderPath, "new_episodes.json");
                 var json = System.Text.Json.JsonSerializer.Serialize(_seriesWithNewEpisodes);
-                System.IO.File.WriteAllText(DataFilePath, json);
+                System.IO.File.WriteAllText(dataFilePath, json);
             }
             catch (Exception ex)
             {
@@ -101,9 +106,16 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
         {
             try
             {
-                if (System.IO.File.Exists(DataFilePath))
+                if (string.IsNullOrEmpty(DataFolderPath))
                 {
-                    var json = System.IO.File.ReadAllText(DataFilePath);
+                    _logger.LogWarning("[NewEpisodeNotifier] DataFolderPath is null, cannot load data.");
+                    return;
+                }
+                
+                var dataFilePath = System.IO.Path.Combine(DataFolderPath, "new_episodes.json");
+                if (System.IO.File.Exists(dataFilePath))
+                {
+                    var json = System.IO.File.ReadAllText(dataFilePath);
                     var data = System.Text.Json.JsonSerializer.Deserialize<HashSet<Guid>>(json);
                     if (data != null)
                     {
