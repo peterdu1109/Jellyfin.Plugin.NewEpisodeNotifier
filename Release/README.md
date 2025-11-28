@@ -8,7 +8,17 @@ Ce plugin notifie les utilisateurs de Jellyfin lorsqu'un nouvel épisode est ajo
 - L'icône s'anime lorsqu'il y a de nouveaux épisodes.
 - Les notifications sont persistantes (sauvegardées sur le disque).
 
-## Installation
+## Installation via Repository (Recommandé)
+
+1. Allez dans le **Tableau de bord** de Jellyfin -> **Plugins** -> **Dépôts**.
+2. Cliquez sur le bouton `+` pour ajouter un dépôt.
+3. Nom : `New Episode Notifier`
+4. URL : `https://peterdu1109.github.io/Jellyfin.Plugin.NewEpisodeNotifier/manifest.json`
+5. Sauvegardez.
+6. Allez dans le catalogue, trouvez "New Episode Notifier" et installez-le.
+7. Redémarrez Jellyfin.
+
+## Installation Manuelle (Alternative)
 
 1. Téléchargez la dernière release (fichier `Jellyfin.Plugin.NewEpisodeNotifier.dll`).
 2. Arrêtez votre serveur Jellyfin.

@@ -1,0 +1,77 @@
+name: Build and Release Plugin
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Build Release
+        run: dotnet build --configuration Release
+
+      - name: Create ZIP artifact
+        run: |
+          cd bin/Release/net9.0
+          zip -r Jellyfin.Plugin.NewEpisodeNotifier.zip Jellyfin.Plugin.NewEpisodeNotifier.dll
+
+      - name: Calculate MD5
+        id: md5
+        run: |
+          cd bin/Release/net9.0
+          echo "hash=$(md5sum Jellyfin.Plugin.NewEpisodeNotifier.zip | awk '{ print $1 }')" >> $GITHUB_OUTPUT
+
+      - name: Update manifest.json
+        id: update_manifest
+        run: |
+          # Variables
+          VERSION="${{ github.event.release.tag_name }}"
+          VERSION=${VERSION#v} # Remove 'v' prefix if present
+          DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/Jellyfin.Plugin.NewEpisodeNotifier.zip"
+          CHECKSUM="${{ steps.md5.outputs.hash }}"
+          
+          # Create a temporary JSON for the new version
+          cat <<EOF > new_version.json
+          {
+            "version": "$VERSION",
+            "changelog": "${{ github.event.release.body }}",
+            "targetAbi": "10.9.0.0",
+            "sourceUrl": "https://github.com/${{ github.repository }}",
+            "checksum": "$CHECKSUM",
+            "timestamp": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+          }
+          EOF
+          
+          # Add new version to manifest.json using jq
+          # Note: This script assumes manifest.json exists and has a "versions" array.
+          # It prepends the new version to the list.
+          jq --argjson new_ver "$(cat new_version.json)" '.versions = [$new_ver] + .versions' manifest.json > manifest.tmp && mv manifest.tmp manifest.json
+          
+          # Clean up
+          rm new_version.json
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: bin/Release/net9.0/Jellyfin.Plugin.NewEpisodeNotifier.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and Push Manifest
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add manifest.json
+          git commit -m "Update manifest.json for version ${{ github.event.release.tag_name }}"
+          git push
