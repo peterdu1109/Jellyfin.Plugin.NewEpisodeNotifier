@@ -10,12 +10,17 @@ Ce plugin notifie les utilisateurs de Jellyfin lorsqu'un nouvel épisode est ajo
 
 ## Installation
 
-1. Compilez le projet et placez la DLL dans le dossier `plugins` de votre serveur Jellyfin.
-2. Redémarrez le serveur Jellyfin.
+1. Téléchargez la dernière release (fichier `Jellyfin.Plugin.NewEpisodeNotifier.dll`).
+2. Arrêtez votre serveur Jellyfin.
+3. Copiez le fichier `Jellyfin.Plugin.NewEpisodeNotifier.dll` dans le dossier `plugins` de votre installation Jellyfin (créez un sous-dossier `NewEpisodeNotifier` si vous voulez être propre).
+   - Windows : `C:\ProgramData\Jellyfin\Server\plugins\`
+   - Linux : `/var/lib/jellyfin/plugins/`
+   - Docker : `/config/plugins/`
+4. Redémarrez le serveur Jellyfin.
 
 ## Activation du Script Client
 
-Depuis les versions récentes de Jellyfin, l'injection automatique de scripts est plus restreinte. Pour que la cloche apparaisse, vous devez ajouter le script manuellement :
+**Note importante :** L'injection automatique du script n'est pas possible techniquement sur les versions actuelles de Jellyfin via ce plugin. Vous devez suivre cette procédure manuelle une seule fois :
 
 1. Allez dans le **Tableau de bord** de Jellyfin.
 2. Allez dans **Général** -> **Code HTML personnalisé**.
