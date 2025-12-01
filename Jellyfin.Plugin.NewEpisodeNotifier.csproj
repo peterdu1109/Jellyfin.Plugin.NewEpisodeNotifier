@@ -1,19 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework> <Authors>Toi</Authors>
+    <TargetFramework>net9.0</TargetFramework>
+    <Authors>Toi</Authors>
     <Company>Toi</Company>
     <Description>Notifie les nouveaux épisodes.</Description>
-    <Version>1.0.3.0</Version>
+    <Version>1.0.4.0</Version>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
   </PropertyGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="ClientScript.js" />
+    <EmbeddedResource Include="Configuration\configPage.html" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Jellyfin.Controller" Version="10.11.0" />
     <PackageReference Include="Jellyfin.Model" Version="10.11.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" /> <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.10" />
   </ItemGroup>
 </Project>

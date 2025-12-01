@@ -2,19 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using MediaBrowser.Common.Configuration;
 using MediaBrowser.Common.Plugins;
 using MediaBrowser.Controller.Library;
 using MediaBrowser.Controller.Entities;
 using MediaBrowser.Controller.Entities.TV;
+using MediaBrowser.Model.Plugins;
+using MediaBrowser.Model.Serialization;
 using Microsoft.Extensions.Logging;
 
 namespace Jellyfin.Plugin.NewEpisodeNotifier
 {
-    public class Plugin : BasePlugin
+    public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
     {
-        // --- ID UNIQUE DU PLUGIN ---
         public override Guid Id => new Guid("a2d3e4f5-6789-4b12-8c34-5d6e7f8a9b0c");
-
         public override string Name => "New Episode Notifier";
         public override string Description => "Affiche une cloche quand un épisode est ajouté.";
 
@@ -24,6 +25,7 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
         
         private readonly object _lock = new object();
         private HashSet<Guid> _seriesWithNewEpisodes = new HashSet<Guid>();
+        
         public HashSet<Guid> SeriesWithNewEpisodes 
         {
             get 
@@ -32,8 +34,8 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
             }
         }
 
-        public Plugin(ILibraryManager libraryManager, ILogger<Plugin> logger) 
-            : base() 
+        public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer, ILibraryManager libraryManager, ILogger<Plugin> logger) 
+            : base(applicationPaths, xmlSerializer) 
         {
             Instance = this;
             _libraryManager = libraryManager;
@@ -41,14 +43,24 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
             
             LoadData();
 
-            // On s'abonne aux événements
             if (_libraryManager != null)
             {
                 _libraryManager.ItemAdded += OnItemAdded;
             }
 
-            // Enregistrement de la transformation de fichier
             RegisterFileTransformation();
+        }
+
+        public IEnumerable<PluginPageInfo> GetPages()
+        {
+            return new[]
+            {
+                new PluginPageInfo
+                {
+                    Name = Name,
+                    EmbeddedResourcePath = GetType().Namespace + ".Configuration.configPage.html"
+                }
+            };
         }
 
         private void OnItemAdded(object sender, ItemChangeEventArgs e)
@@ -139,7 +151,6 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
         {
             try
             {
-                // Recherche de l'assembly FileTransformation
                 Assembly? fileTransformationAssembly = System.Runtime.Loader.AssemblyLoadContext.All
                     .SelectMany(x => x.Assemblies)
                     .FirstOrDefault(x => x.FullName?.Contains(".FileTransformation") ?? false);
@@ -151,8 +162,8 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
                     {
                         var payload = new
                         {
-                            id = new Guid("a2d3e4f5-6789-4b12-8c34-5d6e7f8a9b0d"), // Nouveau GUID pour la transfo
-                            fileNamePattern = "index.html", // Cible index.html
+                            id = new Guid("a2d3e4f5-6789-4b12-8c34-5d6e7f8a9b0d"),
+                            fileNamePattern = "index.html",
                             callbackAssembly = Assembly.GetExecutingAssembly().FullName,
                             callbackClass = typeof(Plugin).FullName,
                             callbackMethod = nameof(TransformFile)
@@ -189,16 +200,11 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
                     var content = contentsProp.GetValue(data) as string;
                     if (content != null)
                     {
-                        // Injection du script
                         var scriptTag = "<script src=\"/NewEpisodeNotifier/ClientScript.js\" defer></script>";
                         
-                        // On insère avant </body>
                         if (content.Contains("</body>"))
                         {
                             var newContent = content.Replace("</body>", $"{scriptTag}</body>");
-                            
-                            // On doit retourner un objet avec la même structure { "contents": "..." }
-                            // On utilise un type anonyme qui sera sérialisé/lu par FileTransformation
                             return new { contents = newContent };
                         }
                     }

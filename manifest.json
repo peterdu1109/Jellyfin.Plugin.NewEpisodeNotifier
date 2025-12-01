@@ -9,6 +9,14 @@
         "imageUrl": "",
         "versions": [
             {
+                "version": "1.0.4.0",
+                "changelog": "Ajout d'une page de configuration pour personnaliser le plugin (intervalle de vérification, animation, message d'alerte).",
+                "targetAbi": "10.11.0.0",
+                "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Plugin.NewEpisodeNotifier/releases/download/v1.0.4/Jellyfin.Plugin.NewEpisodeNotifier.zip",
+                "checksum": "6F0C5EA2A578F8D0D6978AC32D015ED0",
+                "timestamp": "2025-12-01T14:00:00Z"
+            },
+            {
                 "version": "1.0.3.0",
                 "changelog": "Remplacement de l'injection manuelle de script par le plugin File Transformation.",
                 "targetAbi": "10.11.0.0",

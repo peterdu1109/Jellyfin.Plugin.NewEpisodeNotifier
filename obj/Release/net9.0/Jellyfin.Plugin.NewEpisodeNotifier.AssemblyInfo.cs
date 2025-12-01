@@ -13,11 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Toi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Notifie les nouveaux épisodes.")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.3.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.3.0+4322a956237d074ff83e3c3c05436d8c50348edf")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.4.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.4.0+d3418b38d5113000c48fbdb0e9c8e010c066bc5c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jellyfin.Plugin.NewEpisodeNotifier")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jellyfin.Plugin.NewEpisodeNotifier")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.3.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.4.0")]
 
 // Généré par la classe MSBuild WriteCodeFragment.
 
