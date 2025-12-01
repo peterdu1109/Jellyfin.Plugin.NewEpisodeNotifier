@@ -160,6 +160,24 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
                     Type? pluginInterfaceType = fileTransformationAssembly.GetType("Jellyfin.Plugin.FileTransformation.PluginInterface");
                     if (pluginInterfaceType != null)
                     {
+                        // Chercher JObject dans tous les assemblies chargés car on ne le référence pas directement
+                        Type? jObjectType = null;
+                        foreach (var context in System.Runtime.Loader.AssemblyLoadContext.All)
+                        {
+                            foreach (var asm in context.Assemblies)
+                            {
+                                jObjectType = asm.GetType("Newtonsoft.Json.Linq.JObject");
+                                if (jObjectType != null) break;
+                            }
+                            if (jObjectType != null) break;
+                        }
+
+                        if (jObjectType == null)
+                        {
+                            _logger.LogWarning("[NewEpisodeNotifier] Type 'Newtonsoft.Json.Linq.JObject' introuvable dans les assemblies chargés.");
+                            return;
+                        }
+
                         var payloadData = new
                         {
                             id = "a2d3e4f5-6789-4b12-8c34-5d6e7f8a9b0d",
@@ -170,20 +188,24 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
                         };
 
                         var jsonString = System.Text.Json.JsonSerializer.Serialize(payloadData);
-                        var jObjectType = fileTransformationAssembly.GetType("Newtonsoft.Json.Linq.JObject");
-                        
-                        if (jObjectType != null)
-                        {
-                            var parseMethod = jObjectType.GetMethod("Parse", new[] { typeof(string) });
-                            var payload = parseMethod?.Invoke(null, new object[] { jsonString });
+                        _logger.LogDebug("[NewEpisodeNotifier] Payload JSON: {Json}", jsonString);
 
-                            pluginInterfaceType.GetMethod("RegisterTransformation")?.Invoke(null, new object?[] { payload });
-                            _logger.LogInformation("[NewEpisodeNotifier] Transformation de fichier enregistrée avec succès.");
-                        }
-                        else
+                        var parseMethod = jObjectType.GetMethod("Parse", new[] { typeof(string) });
+                        if (parseMethod == null)
                         {
-                            _logger.LogWarning("[NewEpisodeNotifier] Type 'JObject' introuvable.");
+                            _logger.LogWarning("[NewEpisodeNotifier] Méthode 'Parse' introuvable sur JObject.");
+                            return;
                         }
+
+                        var payload = parseMethod.Invoke(null, new object[] { jsonString });
+                        if (payload == null)
+                        {
+                            _logger.LogWarning("[NewEpisodeNotifier] Le payload JObject est null après Parse.");
+                            return;
+                        }
+
+                        pluginInterfaceType.GetMethod("RegisterTransformation")?.Invoke(null, new object?[] { payload });
+                        _logger.LogInformation("[NewEpisodeNotifier] Transformation de fichier enregistrée avec succès.");
                     }
                     else
                     {

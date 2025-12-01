@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Notifie les nouveaux épisodes.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.4.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.4.0+9fab004de7271e33607485cfcebcefdce5647163")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.4.0+81d81729f8dc20e8e53eed59cc645c24e2ebcf58")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jellyfin.Plugin.NewEpisodeNotifier")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jellyfin.Plugin.NewEpisodeNotifier")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.4.0")]

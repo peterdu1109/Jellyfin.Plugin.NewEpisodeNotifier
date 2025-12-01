@@ -7,39 +7,26 @@
         "owner": "peterdu1109",
         "category": "General",
         "imageUrl": "",
-        "versions": [
-            {
-                "version": "1.0.4.0",
-                "changelog": "Ajout d'une page de configuration pour personnaliser le plugin (intervalle de vérification, animation, message d'alerte).",
-                "targetAbi": "10.11.0.0",
-                "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Plugin.NewEpisodeNotifier/releases/download/v1.0.4/Jellyfin.Plugin.NewEpisodeNotifier.zip",
-                "checksum": "F49B93C548A81A091B74E4DD4E32C7EE",
-                "timestamp": "2025-12-01T14:00:00Z"
-            },
-            {
-                "version": "1.0.3.0",
-                "changelog": "Remplacement de l'injection manuelle de script par le plugin File Transformation.",
-                "targetAbi": "10.11.0.0",
-                "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Plugin.NewEpisodeNotifier/releases/download/v1.0.3/Jellyfin.Plugin.NewEpisodeNotifier.zip",
-                "checksum": "5EE5DED99B51CADA01A7005FAACAC934",
-                "timestamp": "2025-12-01T13:00:00Z"
-            },
-            {
-                "version": "1.0.2.0",
-                "changelog": "Correction du bug DataFolderPath null au démarrage.",
-                "targetAbi": "10.11.0.0",
-                "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Plugin.NewEpisodeNotifier/releases/download/v1.0.2/Jellyfin.Plugin.NewEpisodeNotifier.zip",
-                "checksum": "4be40a346eff6f4f104bcd1630e2a673",
-                "timestamp": "2025-11-28T16:20:00Z"
-            },
-            {
-                "version": "1.0.1.0",
-                "changelog": "Version initiale avec persistance des notifications et support de l'icône de cloche.",
-                "targetAbi": "10.9.0.0",
-                "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Plugin.NewEpisodeNotifier/releases/download/Realse1.0.1/Jellyfin.Plugin.NewEpisodeNotifier.zip",
-                "checksum": "ef64022ed651e62405931b0b8edc9d7a",
-                "timestamp": "2025-11-28T15:00:00Z"
-            }
-        ]
+        "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Plugin.NewEpisodeNotifier/releases/download/v1.0.3/Jellyfin.Plugin.NewEpisodeNotifier.zip",
+        "checksum": "5EE5DED99B51CADA01A7005FAACAC934",
+        "timestamp": "2025-12-01T13:00:00Z"
+    },
+    {
+        "version": "1.0.2.0",
+        "changelog": "Correction du bug DataFolderPath null au démarrage.",
+        "targetAbi": "10.11.0.0",
+        "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Plugin.NewEpisodeNotifier/releases/download/v1.0.2/Jellyfin.Plugin.NewEpisodeNotifier.zip",
+        "checksum": "4be40a346eff6f4f104bcd1630e2a673",
+        "timestamp": "2025-11-28T16:20:00Z"
+    },
+    {
+        "version": "1.0.1.0",
+        "changelog": "Version initiale avec persistance des notifications et support de l'icône de cloche.",
+        "targetAbi": "10.9.0.0",
+        "sourceUrl": "https://github.com/peterdu1109/Jellyfin.Plugin.NewEpisodeNotifier/releases/download/Realse1.0.1/Jellyfin.Plugin.NewEpisodeNotifier.zip",
+        "checksum": "ef64022ed651e62405931b0b8edc9d7a",
+        "timestamp": "2025-11-28T15:00:00Z"
     }
+]
+}
 ]
