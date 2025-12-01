@@ -1850,7 +1850,7 @@
     "C:\\Users\\kogon\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.0.2",
+    "version": "1.0.3",
     "restore": {
       "projectUniqueName": "C:\\Users\\kogon\\OneDrive\\Documents\\GitHub\\Plugin Upcscaling\\Jellyfin.Plugin.NewEpisodeNotifier\\Jellyfin.Plugin.NewEpisodeNotifier.csproj",
       "projectName": "Jellyfin.Plugin.NewEpisodeNotifier",
