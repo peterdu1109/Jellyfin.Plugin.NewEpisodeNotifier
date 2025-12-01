@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ja5DpSsKLQw=",
+  "dgSpecHash": "AfFiaNXRnBM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\kogon\\OneDrive\\Bureau\\Jellyfin.Plugin.NewEpisodeNotifier\\Jellyfin.Plugin.NewEpisodeNotifier.csproj",
+  "projectFilePath": "C:\\Users\\kogon\\OneDrive\\Documents\\GitHub\\Plugin Upcscaling\\Jellyfin.Plugin.NewEpisodeNotifier\\Jellyfin.Plugin.NewEpisodeNotifier.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kogon\\.nuget\\packages\\bitfaster.caching\\2.5.4\\bitfaster.caching.2.5.4.nupkg.sha512",
     "C:\\Users\\kogon\\.nuget\\packages\\diacritics\\4.0.17\\diacritics.4.0.17.nupkg.sha512",

@@ -8,6 +8,12 @@ Ce plugin notifie les utilisateurs de Jellyfin lorsqu'un nouvel épisode est ajo
 - L'icône s'anime lorsqu'il y a de nouveaux épisodes.
 - Les notifications sont persistantes (sauvegardées sur le disque).
 
+## Pré-requis
+
+- **Jellyfin Plugin File Transformation** : Ce plugin est nécessaire pour l'injection automatique du script.
+  1. Ajoutez le dépôt : `https://www.iamparadox.dev/jellyfin/plugins/manifest.json`
+  2. Installez le plugin "File Transformation".
+
 ## Installation via Repository (Recommandé)
 
 1. Allez dans le **Tableau de bord** de Jellyfin -> **Plugins** -> **Dépôts**.
@@ -18,29 +24,15 @@ Ce plugin notifie les utilisateurs de Jellyfin lorsqu'un nouvel épisode est ajo
 6. Allez dans le catalogue, trouvez "New Episode Notifier" et installez-le.
 7. Redémarrez Jellyfin.
 
+Une fois installé (et le plugin File Transformation présent), la cloche de notification apparaîtra automatiquement. Plus besoin de modification manuelle du HTML !
+
 ## Installation Manuelle (Alternative)
 
 1. Téléchargez la dernière release (fichier `Jellyfin.Plugin.NewEpisodeNotifier.dll`).
 2. Arrêtez votre serveur Jellyfin.
-3. Copiez le fichier `Jellyfin.Plugin.NewEpisodeNotifier.dll` dans le dossier `plugins` de votre installation Jellyfin (créez un sous-dossier `NewEpisodeNotifier` si vous voulez être propre).
-   - Windows : `C:\ProgramData\Jellyfin\Server\plugins\`
-   - Linux : `/var/lib/jellyfin/plugins/`
-   - Docker : `/config/plugins/`
-4. Redémarrez le serveur Jellyfin.
-
-## Activation du Script Client
-
-**Note importante :** L'injection automatique du script n'est pas possible techniquement sur les versions actuelles de Jellyfin via ce plugin. Vous devez suivre cette procédure manuelle une seule fois :
-
-1. Allez dans le **Tableau de bord** de Jellyfin.
-2. Allez dans **Général** -> **Code HTML personnalisé**.
-3. Ajoutez la ligne suivante dans la section **Body (JS)** (ou équivalent) :
-
-```html
-<script src="/NewEpisodeNotifier/ClientScript.js"></script>
-```
-
-4. Sauvegardez et rafraîchissez votre page Jellyfin (F5).
+3. Copiez le fichier `Jellyfin.Plugin.NewEpisodeNotifier.dll` dans le dossier `plugins` de votre installation Jellyfin.
+4. Assurez-vous d'avoir également installé le plugin "File Transformation".
+5. Redémarrez le serveur Jellyfin.
 
 ## Dépannage
 

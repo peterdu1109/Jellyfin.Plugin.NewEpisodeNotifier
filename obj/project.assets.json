@@ -1852,14 +1852,14 @@
   "project": {
     "version": "1.0.2",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kogon\\OneDrive\\Bureau\\Jellyfin.Plugin.NewEpisodeNotifier\\Jellyfin.Plugin.NewEpisodeNotifier.csproj",
+      "projectUniqueName": "C:\\Users\\kogon\\OneDrive\\Documents\\GitHub\\Plugin Upcscaling\\Jellyfin.Plugin.NewEpisodeNotifier\\Jellyfin.Plugin.NewEpisodeNotifier.csproj",
       "projectName": "Jellyfin.Plugin.NewEpisodeNotifier",
-      "projectPath": "C:\\Users\\kogon\\OneDrive\\Bureau\\Jellyfin.Plugin.NewEpisodeNotifier\\Jellyfin.Plugin.NewEpisodeNotifier.csproj",
+      "projectPath": "C:\\Users\\kogon\\OneDrive\\Documents\\GitHub\\Plugin Upcscaling\\Jellyfin.Plugin.NewEpisodeNotifier\\Jellyfin.Plugin.NewEpisodeNotifier.csproj",
       "packagesPath": "C:\\Users\\kogon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kogon\\OneDrive\\Bureau\\Jellyfin.Plugin.NewEpisodeNotifier\\obj\\",
+      "outputPath": "C:\\Users\\kogon\\OneDrive\\Documents\\GitHub\\Plugin Upcscaling\\Jellyfin.Plugin.NewEpisodeNotifier\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\kogon\\OneDrive\\Bureau\\Jellyfin.Plugin.NewEpisodeNotifier\\NuGet.Config",
+        "C:\\Users\\kogon\\OneDrive\\Documents\\GitHub\\Plugin Upcscaling\\Jellyfin.Plugin.NewEpisodeNotifier\\NuGet.Config",
         "C:\\Users\\kogon\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [

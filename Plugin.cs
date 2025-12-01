@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using MediaBrowser.Common.Plugins;
 using MediaBrowser.Controller.Library;
 using MediaBrowser.Controller.Entities;
@@ -30,8 +32,6 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
             }
         }
 
-        // --- CONSTRUCTEUR CORRIGÉ POUR COMPILER ---
-        // On demande juste ce dont on a besoin, et on laisse base() vide.
         public Plugin(ILibraryManager libraryManager, ILogger<Plugin> logger) 
             : base() 
         {
@@ -46,6 +46,9 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
             {
                 _libraryManager.ItemAdded += OnItemAdded;
             }
+
+            // Enregistrement de la transformation de fichier
+            RegisterFileTransformation();
         }
 
         private void OnItemAdded(object sender, ItemChangeEventArgs e)
@@ -130,6 +133,82 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
             {
                 _logger.LogError(ex, "Erreur lors du chargement des notifications.");
             }
+        }
+
+        private void RegisterFileTransformation()
+        {
+            try
+            {
+                // Recherche de l'assembly FileTransformation
+                Assembly? fileTransformationAssembly = System.Runtime.Loader.AssemblyLoadContext.All
+                    .SelectMany(x => x.Assemblies)
+                    .FirstOrDefault(x => x.FullName?.Contains(".FileTransformation") ?? false);
+
+                if (fileTransformationAssembly != null)
+                {
+                    Type? pluginInterfaceType = fileTransformationAssembly.GetType("Jellyfin.Plugin.FileTransformation.PluginInterface");
+                    if (pluginInterfaceType != null)
+                    {
+                        var payload = new
+                        {
+                            id = new Guid("a2d3e4f5-6789-4b12-8c34-5d6e7f8a9b0d"), // Nouveau GUID pour la transfo
+                            fileNamePattern = "index.html", // Cible index.html
+                            callbackAssembly = Assembly.GetExecutingAssembly().FullName,
+                            callbackClass = typeof(Plugin).FullName,
+                            callbackMethod = nameof(TransformFile)
+                        };
+
+                        pluginInterfaceType.GetMethod("RegisterTransformation")?.Invoke(null, new object?[] { payload });
+                        _logger.LogInformation("[NewEpisodeNotifier] Transformation de fichier enregistrée avec succès.");
+                    }
+                    else
+                    {
+                        _logger.LogWarning("[NewEpisodeNotifier] Type 'Jellyfin.Plugin.FileTransformation.PluginInterface' introuvable.");
+                    }
+                }
+                else
+                {
+                    _logger.LogWarning("[NewEpisodeNotifier] Assembly 'FileTransformation' introuvable. Assurez-vous que le plugin est installé.");
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "[NewEpisodeNotifier] Erreur lors de l'enregistrement de la transformation de fichier.");
+            }
+        }
+
+        public static object TransformFile(object data)
+        {
+            try
+            {
+                var type = data.GetType();
+                var contentsProp = type.GetProperty("contents");
+                
+                if (contentsProp != null)
+                {
+                    var content = contentsProp.GetValue(data) as string;
+                    if (content != null)
+                    {
+                        // Injection du script
+                        var scriptTag = "<script src=\"/NewEpisodeNotifier/ClientScript.js\" defer></script>";
+                        
+                        // On insère avant </body>
+                        if (content.Contains("</body>"))
+                        {
+                            var newContent = content.Replace("</body>", $"{scriptTag}</body>");
+                            
+                            // On doit retourner un objet avec la même structure { "contents": "..." }
+                            // On utilise un type anonyme qui sera sérialisé/lu par FileTransformation
+                            return new { contents = newContent };
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[NewEpisodeNotifier] Erreur dans TransformFile: {ex.Message}");
+            }
+            return data; 
         }
     }
 }
