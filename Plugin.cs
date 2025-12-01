@@ -160,17 +160,30 @@ namespace Jellyfin.Plugin.NewEpisodeNotifier
                     Type? pluginInterfaceType = fileTransformationAssembly.GetType("Jellyfin.Plugin.FileTransformation.PluginInterface");
                     if (pluginInterfaceType != null)
                     {
-                        var payload = new
+                        var payloadData = new
                         {
-                            id = new Guid("a2d3e4f5-6789-4b12-8c34-5d6e7f8a9b0d"),
+                            id = "a2d3e4f5-6789-4b12-8c34-5d6e7f8a9b0d",
                             fileNamePattern = "index.html",
                             callbackAssembly = Assembly.GetExecutingAssembly().FullName,
                             callbackClass = typeof(Plugin).FullName,
                             callbackMethod = nameof(TransformFile)
                         };
 
-                        pluginInterfaceType.GetMethod("RegisterTransformation")?.Invoke(null, new object?[] { payload });
-                        _logger.LogInformation("[NewEpisodeNotifier] Transformation de fichier enregistrée avec succès.");
+                        var jsonString = System.Text.Json.JsonSerializer.Serialize(payloadData);
+                        var jObjectType = fileTransformationAssembly.GetType("Newtonsoft.Json.Linq.JObject");
+                        
+                        if (jObjectType != null)
+                        {
+                            var parseMethod = jObjectType.GetMethod("Parse", new[] { typeof(string) });
+                            var payload = parseMethod?.Invoke(null, new object[] { jsonString });
+
+                            pluginInterfaceType.GetMethod("RegisterTransformation")?.Invoke(null, new object?[] { payload });
+                            _logger.LogInformation("[NewEpisodeNotifier] Transformation de fichier enregistrée avec succès.");
+                        }
+                        else
+                        {
+                            _logger.LogWarning("[NewEpisodeNotifier] Type 'JObject' introuvable.");
+                        }
                     }
                     else
                     {
